@@ -7,7 +7,7 @@ import "@nomiclabs/hardhat-waffle";
 import "@typechain/hardhat";
 import "hardhat-gas-reporter";
 import "solidity-coverage";
-import "./tasks/index.ts";
+import "hardhat-contract-sizer";
 import { ChainEnv, Chains } from "./interfaces/enums";
 import { NetworkUserConfig } from "hardhat/src/types/config";
 
@@ -53,12 +53,6 @@ const getChainConfig = (chain: Chains): NetworkUserConfig => {
 const config: IConfig = {
   solidity: {
     version: "0.8.4",
-    settings: {
-      optimizer: {
-        enabled: true,
-        runs: 200,
-      },
-    },
   },
   networks: {
     [Chains.RINKEBY as string]: getChainConfig(Chains.RINKEBY),

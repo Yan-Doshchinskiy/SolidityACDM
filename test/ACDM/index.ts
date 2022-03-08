@@ -6,12 +6,24 @@ import { getAcdmArguments } from "../../arguments/ACDM";
 import viewFunctions from "./ACDMviewFunctions";
 import registrationFunctions from "./ACDMregistrationFunctions";
 import roundsFunctions from "./ACDMroundsFunctions";
+import saleRoundFunctions from "./ACDMsaleRoundFunctions";
+import tradeRoundFunctions from "./ACDMtradeRoundFunctions";
+import { BigNumber } from "ethers";
 
 export default describe("ACDM contract testing", async function () {
   before(async function () {
     this.ethers = ethers;
     [this.owner, this.user1, this.user2, this.user3, this.user4] =
       await ethers.getSigners();
+    this.ethAmount1 = "500000000000000000";
+    this.ethAmount2 = "1000000000000000000";
+    this.ethAmount3 = "800000000000000000";
+    this.buyAmount1 = "50000000000000000000";
+    this.buyAmount2 = "90000000000000000000";
+    this.buyAmount3 = "180000000000000000000";
+    this.testPrice1 = "3000000000000";
+    this.testPrice1 = "1000000000000";
+    this.testPrice1 = "1200000000000";
   });
 
   beforeEach(async function () {
@@ -23,7 +35,11 @@ export default describe("ACDM contract testing", async function () {
       artifactEthToken,
       getTokenArguments()
     );
+    this.bigDecimals = BigNumber.from(10).pow(
+      await this.instanceToken.decimals()
+    );
     this.acdmArguments = getAcdmArguments(this.instanceToken.address);
+    this.halfAmount = BigNumber.from(this.acdmArguments[1]).div(2);
     const artifactACDM: Artifact = await artifacts.readArtifact("ACDM");
     this.instanceACDM = await waffle.deployContract(
       this.owner,
@@ -36,4 +52,6 @@ export default describe("ACDM contract testing", async function () {
   viewFunctions();
   registrationFunctions();
   roundsFunctions();
+  saleRoundFunctions();
+  tradeRoundFunctions();
 });
