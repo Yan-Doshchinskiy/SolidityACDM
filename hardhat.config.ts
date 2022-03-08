@@ -19,16 +19,15 @@ interface IConfig extends HardhatUserConfig {
 
 const reportGas = process.env.REPORT_GAS === "true";
 const ethApiKey = process.env.RINKEBY_API_KEY as string;
-const daoTokenERC20 = process.env.DAO_TOKEN_ADDRESS as string;
 
 type IEnvItem = { value: string | number | undefined; key: string };
 
 const requiredEnvs: Array<IEnvItem> = [
-  { value: ethApiKey, key: "RINKEBY_API_KEY" },
+  { value: process.env.ACDM_TOKEN, key: "ACDM_TOKEN" },
+  { value: process.env.ACDM_CONTRACT, key: "ACDM_CONTRACT" },
   { value: process.env.RINKEBY_CHAIN_URL, key: "RINKEBY_CHAIN_URL" },
   { value: process.env.RINKEBY_CHAIN_ID, key: "RINKEBY_CHAIN_ID" },
   { value: process.env.RINKEBY_PRIVATE_KEY, key: "RINKEBY_PRIVATE_KEY" },
-  { value: daoTokenERC20, key: "DAO_TOKEN_ADDRESS" },
 ];
 
 requiredEnvs.forEach((item: IEnvItem): void => {

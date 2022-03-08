@@ -5,8 +5,8 @@ const AcdmContract = process.env.ACDM_CONTRACT as string;
 
 const baseArgs = ["RofloCoin", "ROFL"];
 
-export const getTokenArguments = (token = AcdmContract): argsArray => {
-  return [...baseArgs, token] as argsArray;
+export const getTokenArguments = (contract = AcdmContract): argsArray => {
+  return [...baseArgs, contract] as argsArray;
 };
 
 export default getTokenArguments() as argsArray;
