@@ -1,12 +1,12 @@
-// [address _Token, uint256 _minBalance, uint256 _minimumQuorum, uint256 _proposalDuration, uint256 _requisiteMajority]
-type argsArray = [string, number, number, number, number];
+// (uint256 _roundDuration, uint256 _roundSupply, uint256 _ethAmount, uint256 _tokenPriceRatio, address _TokenACDM)
+type argsArray = [number, number, string, number, string, string];
 
-const DaoToken = process.env.DAO_TOKEN_ADDRESS as string;
+const AcdmToken = process.env.ACDM_TOKEN as string;
 
-const baseArgs = [5, 10, 86400, 50];
+const baseArgs = [259200, "100000", "1000000000000000000", 3, "4000000000000"];
 
-export const getDaoArguments = (token = DaoToken): argsArray => {
-  return [token, ...baseArgs] as argsArray;
+export const getAcdmArguments = (token = AcdmToken): argsArray => {
+  return [...baseArgs, token] as argsArray;
 };
 
-export default [DaoToken, ...baseArgs] as argsArray;
+export default getAcdmArguments() as argsArray;

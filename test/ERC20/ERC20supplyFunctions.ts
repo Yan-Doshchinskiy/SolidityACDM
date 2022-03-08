@@ -26,7 +26,7 @@ export default (): void => {
     const expectedBalance = BigNumber.from(oldBalance).sub(this.testBurnAmount);
     expect(balance).to.be.equal(expectedBalance);
   });
-  it(`ERC20-SUPPLY: only ACDM account can call burn function (reverted) `, async function (): Promise<void> {
+  it(`ERC20-SUPPLY: only ACDM account can call burn function (reverted)`, async function (): Promise<void> {
     await this.instance
       .connect(this.acdmContract)
       .mint(this.user1.address, this.testMintAmount);
