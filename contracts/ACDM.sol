@@ -258,7 +258,7 @@ contract ACDM is ReentrancyGuard {
     // utility functions
     function _startSaleRound() internal {
         _Round storage currentRound = rounds[roundId];
-        _Round storage prevRound = rounds[roundId];
+        _Round storage prevRound = rounds[roundId - 1];
         currentRound.status = RoundStatus.PROGRESS;
         currentRound.roundType = RoundType.SALE;
         currentRound.startTime = block.timestamp;
